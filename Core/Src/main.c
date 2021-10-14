@@ -22,11 +22,14 @@
 #include "adc.h"
 #include "dma.h"
 #include "hrtim.h"
+#include "hrtim.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "drv_BridgeHW.h"
+#include "drv_ADCSense.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -76,7 +79,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+	HAL_Delay(100);
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -91,7 +94,9 @@ int main(void)
   MX_HRTIM1_Init();
   MX_DMA_Init();
   MX_ADC1_Init();
+  MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
+  ADCSense_Init(); // 需要比Bridge初始化早
   Bridge_Init();
   /* USER CODE END 2 */
 
